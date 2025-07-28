@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Master - Test Your Knowledge</title>
+    <link rel="stylesheet" href="../css/style/quiz.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Topic Selection Page -->
+    <div id="topic-selection" class="page active">
+        <div class="container">
+            <header class="header">
+                <h1><i class="fas fa-brain"></i>AI Quiz Challenge</h1>
+                <p>Test your knowledge across various subjects</p>
+            </header>
+            
+            <div class="content">
+                <h2>Select a Topic</h2>
+                <div class="topics-grid">
+                    <div class="topic-card" data-topic="DBMS">
+                        <i class="fas fa-database"></i>
+                        <h3>DBMS</h3>
+                        <p>Database Management Systems</p>
+                    </div>
+                    <div class="topic-card" data-topic="OS">
+                        <i class="fas fa-desktop"></i>
+                        <h3>OS</h3>
+                        <p>Operating Systems</p>
+                    </div>
+                    <div class="topic-card" data-topic="DSA">
+                        <i class="fas fa-code"></i>
+                        <h3>DSA</h3>
+                        <p>Data Structures & Algorithms</p>
+                    </div>
+                    <div class="topic-card" data-topic="ADA">
+                        <i class="fas fa-calculator"></i>
+                        <h3>ADA</h3>
+                        <p>Algorithm Design & Analysis</p>
+                    </div>
+                    <div class="topic-card" data-topic="SE">
+                        <i class="fas fa-cogs"></i>
+                        <h3>SE</h3>
+                        <p>Software Engineering</p>
+                    </div>
+                    <div class="topic-card" data-topic="CN">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>CN</h3>
+                        <p>Computer Networks</p>
+                    </div>
+                    <div class="topic-card" data-topic="ML">
+                        <i class="fas fa-robot"></i>
+                        <h3>ML</h3>
+                        <p>Machine Learning</p>
+                    </div>
+                    <div class="topic-card" data-topic="OOPs">
+                        <i class="fas fa-object-group"></i>
+                        <h3>OOPs</h3>
+                        <p>Object-Oriented Programming</p>
+                    </div>
+                    <div class="topic-card" data-topic="Java">
+                        <i class="fab fa-java"></i>
+                        <h3>Java</h3>
+                        <p>Java Programming</p>
+                    </div>
+                    <div class="topic-card" data-topic="JavaScript">
+                        <i class="fab fa-js-square"></i>
+                        <h3>JavaScript</h3>
+                        <p>JavaScript Programming</p>
+                    </div>
+                    <div class="topic-card" data-topic="HTML">
+                        <i class="fab fa-html5"></i>
+                        <h3>HTML</h3>
+                        <p>HyperText Markup Language</p>
+                    </div>
+                    <div class="topic-card" data-topic="CSS">
+                        <i class="fab fa-css3-alt"></i>
+                        <h3>CSS</h3>
+                        <p>Cascading Style Sheets</p>
+                    </div>
+                    <div class="topic-card" data-topic="React">
+                        <i class="fab fa-react"></i>
+                        <h3>React.js</h3>
+                        <p>React JavaScript Library</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Difficulty Selection Page -->
+    <div id="difficulty-selection" class="page">
+        <div class="container">
+            <header class="header">
+                <h1><i class="fas fa-brain"></i> Quiz Master</h1>
+                <p>Selected Topic: <span id="selected-topic-display"></span></p>
+            </header>
+            
+            <div class="content">
+                <h2>Select Difficulty Level</h2>
+                <div class="difficulty-options">
+                    <div class="difficulty-card" data-difficulty="easy">
+                        <i class="fas fa-smile"></i>
+                        <h3>Easy</h3>
+                        <p>Basic questions to get started</p>
+                    </div>
+                    <div class="difficulty-card" data-difficulty="medium">
+                        <i class="fas fa-meh"></i>
+                        <h3>Medium</h3>
+                        <p>Intermediate level questions</p>
+                    </div>
+                    <div class="difficulty-card" data-difficulty="hard">
+                        <i class="fas fa-frown"></i>
+                        <h3>Hard</h3>
+                        <p>Advanced challenging questions</p>
+                    </div>
+                </div>
+                
+                <button id="back-to-topics" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Topics
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Page -->
+    <div id="quiz-page" class="page">
+        <div class="container">
+            <header class="quiz-header">
+                <div class="quiz-info">
+                    <h1>Quiz in Progress</h1>
+                    <p><span id="current-topic"></span> - <span id="current-difficulty"></span></p>
+                </div>
+                <div class="progress-info">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <span id="question-counter">1 / 15</span>
+                </div>
+            </header>
+            
+            <div class="quiz-content">
+                <div class="question-card">
+                    <h2 id="question-text">Question will appear here</h2>
+                    <div class="options-container">
+                        <div class="option" data-option="A">
+                            <span class="option-letter">A</span>
+                            <span class="option-text">Option A</span>
+                        </div>
+                        <div class="option" data-option="B">
+                            <span class="option-letter">B</span>
+                            <span class="option-text">Option B</span>
+                        </div>
+                        <div class="option" data-option="C">
+                            <span class="option-letter">C</span>
+                            <span class="option-text">Option C</span>
+                        </div>
+                        <div class="option" data-option="D">
+                            <span class="option-letter">D</span>
+                            <span class="option-text">Option D</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quiz-controls">
+                    <button id="prev-question" class="btn btn-secondary" disabled>
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button id="next-question" class="btn btn-primary" disabled>
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button id="submit-quiz" class="btn btn-success" style="display: none;">
+                        Submit Quiz <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Page -->
+    <div id="results-page" class="page">
+        <div class="container">
+            <header class="header">
+                <h1><i class="fas fa-trophy"></i> Quiz Results</h1>
+            </header>
+            
+            <div class="content">
+                <div class="results-summary">
+                    <div class="score-circle">
+                        <div class="score-inner">
+                            <span id="final-score">0</span>
+                            <span class="score-total">/ 15</span>
+                        </div>
+                    </div>
+                    
+                    <div class="results-details">
+                        <h2 id="results-title">Great Job!</h2>
+                        <p id="results-percentage">0%</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <i class="fas fa-check-circle"></i>
+                                <h3 id="correct-count">0</h3>
+                                <p>Correct</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-times-circle"></i>
+                                <h3 id="wrong-count">0</h3>
+                                <p>Wrong</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-star"></i>
+                                <h3 id="star-rating">★★★★★</h3>
+                                <p>Rating</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="results-actions">
+                    <button id="show-answers" class="btn btn-primary">
+                        <i class="fas fa-eye"></i> Show Answers
+                    </button>
+                    <button id="restart-quiz" class="btn btn-success">
+                        <i class="fas fa-redo"></i> Take Another Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Answer Review Page -->
+    <div id="answer-review" class="page">
+        <div class="container">
+            <header class="header">
+                <h1><i class="fas fa-clipboard-list"></i> Answer Review</h1>
+                <p>Review your answers and see the correct ones</p>
+            </header>
+            
+            <div class="content">
+                <div id="review-container">
+                    <!-- Review items will be populated here -->
+                </div>
+                
+                <div class="review-actions">
+                    <button id="back-to-results" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Results
+                    </button>
+                    <button id="new-quiz" class="btn btn-success">
+                        <i class="fas fa-plus"></i> New Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="questions.js"></script>
+    <script src="script.js"></script> -->
+</body>
+</html>
+
+<script>
+    let selectedTopic = '';
+let quizData = [];
+let currentQuestionIndex = 0;
+let score = 0;
+let userAnswers = [];
+
+const topicCards = document.querySelectorAll('.topic-card');
+const difficultyCards = document.querySelectorAll('.difficulty-card');
+
+const topicSelectionPage = document.getElementById('topic-selection');
+const difficultyPage = document.getElementById('difficulty-selection');
+const quizPage = document.getElementById('quiz-page');
+const resultsPage = document.getElementById('results-page');
+const answerReviewPage = document.getElementById('answer-review');
+
+const selectedTopicDisplay = document.getElementById('selected-topic-display');
+const currentTopicDisplay = document.getElementById('current-topic');
+const currentDifficultyDisplay = document.getElementById('current-difficulty');
+const questionText = document.getElementById('question-text');
+const optionsContainer = document.querySelector('.options-container');
+const questionCounter = document.getElementById('question-counter');
+const progressFill = document.getElementById('progress-fill');
+
+const correctCount = document.getElementById('correct-count');
+const wrongCount = document.getElementById('wrong-count');
+const finalScore = document.getElementById('final-score');
+const resultsPercentage = document.getElementById('results-percentage');
+
+const reviewContainer = document.getElementById('review-container');
+
+const API_KEY = 'iZqsE6ieCcqP7Umd98VQZfhmeP89cIZoBaHz7Vsg';
+
+// Category mapping for quizapi.io
+const categoryMap = {
+    DBMS: 'sql',
+    OS: 'linux',
+    DSA: 'code',
+    ADA: 'code',
+    SE: 'code',
+    CN: 'linux',
+    ML: 'code',
+    Java: 'code',
+    JavaScript: 'code',
+    HTML: 'code',
+    CSS: 'code',
+    React: 'code',
+    OOPs: 'code'
+};
+
+topicCards.forEach(card => {
+    card.addEventListener('click', () => {
+        selectedTopic = card.dataset.topic;
+        selectedTopicDisplay.textContent = selectedTopic;
+        showPage(difficultyPage);
+    });
+});
+
+difficultyCards.forEach(card => {
+    card.addEventListener('click', () => {
+        currentTopicDisplay.textContent = selectedTopic;
+        currentDifficultyDisplay.textContent = 'N/A';
+        startQuiz();
+    });
+});
+
+document.getElementById('back-to-topics').addEventListener('click', () => {
+    showPage(topicSelectionPage);
+});
+
+function showPage(pageElement) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    pageElement.classList.add('active');
+}
+
+// Fetch questions using your API key
+async function fetchQuizQuestions(topic) {
+    const category = categoryMap[topic] || 'code';
+    const url = `https://quizapi.io/api/v1/questions?category=${category}&limit=10`;
+
+    try {
+        const response = await fetch(url, {
+            headers: {
+                "X-Api-Key": API_KEY
+            }
+        });
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching questions:", error);
+        return [];
+    }
+}
+
+async function startQuiz() {
+    showPage(quizPage);
+    quizData = await fetchQuizQuestions(selectedTopic);
+    score = 0;
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    displayQuestion();
+}
+
+function displayQuestion() {
+    const question = quizData[currentQuestionIndex];
+    if (!question) return;
+
+    questionText.innerHTML = question.question;
+
+    const answers = question.answers;
+    optionsContainer.innerHTML = '';
+
+    for (let key in answers) {
+        if (answers[key]) {
+            const div = document.createElement('div');
+            div.className = 'option';
+            div.dataset.option = key;
+            div.innerHTML = `
+                <span class="option-letter">${key.toUpperCase()}</span>
+                <span class="option-text">${answers[key]}</span>
+            `;
+            div.addEventListener('click', () => selectAnswer(div));
+            optionsContainer.appendChild(div);
+        }
+    }
+
+    questionCounter.textContent = `${currentQuestionIndex + 1} / ${quizData.length}`;
+    progressFill.style.width = `${((currentQuestionIndex + 1) / quizData.length) * 100}%`;
+
+    document.getElementById('prev-question').disabled = currentQuestionIndex === 0;
+    document.getElementById('next-question').disabled = true;
+    document.getElementById('submit-quiz').style.display = currentQuestionIndex === quizData.length - 1 ? 'inline-block' : 'none';
+}
+
+function selectAnswer(selectedDiv) {
+    const allOptions = document.querySelectorAll('.option');
+    allOptions.forEach(opt => opt.classList.remove('selected'));
+    selectedDiv.classList.add('selected');
+
+    const selectedKey = selectedDiv.dataset.option;
+    userAnswers[currentQuestionIndex] = selectedKey;
+
+    document.getElementById('next-question').disabled = false;
+}
+
+document.getElementById('next-question').addEventListener('click', () => {
+    if (currentQuestionIndex < quizData.length - 1) {
+        currentQuestionIndex++;
+        displayQuestion();
+    }
+});
+
+document.getElementById('prev-question').addEventListener('click', () => {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        displayQuestion();
+    }
+});
+
+document.getElementById('submit-quiz').addEventListener('click', () => {
+    calculateResults();
+});
+
+function calculateResults() {
+    let correct = 0;
+
+    quizData.forEach((q, index) => {
+        const correctKey = Object.entries(q.correct_answers).find(
+            ([key, value]) => value === "true"
+        )?.[0]?.slice(-1); // example: "answer_a_correct" → "a"
+
+        if (userAnswers[index] && userAnswers[index].toLowerCase() === correctKey) {
+            correct++;
+        }
+    });
+
+    score = correct;
+    finalScore.textContent = score;
+    correctCount.textContent = score;
+    wrongCount.textContent = quizData.length - score;
+    resultsPercentage.textContent = `${Math.round((score / quizData.length) * 100)}%`;
+
+    showPage(resultsPage);
+}
+
+document.getElementById('show-answers').addEventListener('click', () => {
+    reviewContainer.innerHTML = '';
+    quizData.forEach((q, i) => {
+        const correctKey = Object.entries(q.correct_answers).find(
+            ([key, value]) => value === "true"
+        )?.[0]?.slice(-1);
+
+        const yourAns = userAnswers[i] || 'No Answer';
+        const correctAns = q.answers[`answer_${correctKey}`];
+
+        const div = document.createElement('div');
+        div.className = 'review-item';
+        div.innerHTML = `
+            <h3>Q${i + 1}: ${q.question}</h3>
+            <p><strong>Your Answer:</strong> ${q.answers[yourAns] || 'No Answer'}</p>
+            <p><strong>Correct Answer:</strong> ${correctAns}</p>
+            <hr>
+        `;
+        reviewContainer.appendChild(div);
+    });
+    showPage(answerReviewPage);
+});
+
+document.getElementById('back-to-results').addEventListener('click', () => {
+    showPage(resultsPage);
+});
+
+document.getElementById('restart-quiz').addEventListener('click', () => {
+    showPage(topicSelectionPage);
+});
+
+document.getElementById('new-quiz').addEventListener('click', () => {
+    showPage(topicSelectionPage);
+});
+
+</script>
