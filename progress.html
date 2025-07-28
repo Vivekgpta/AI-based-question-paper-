@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Progress</title>
+  <link rel="stylesheet" href="../css/style/features.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-brand">Progress Tracker</div>
+  <div class="nav-user">
+    <span id="username"></span>
+    <button onclick="location.href='dashboard.html'">Back to Dashboard</button>
+    <button id="logoutBtn">Logout</button>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Your Quiz Activity</h2>
+  <div id="activityList" class="activity-log"></div>
+</div>
+
+<script src="../js/scripts/progress.js"></script>
+</body>
+</html>

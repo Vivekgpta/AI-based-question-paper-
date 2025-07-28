@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | Bloom's Taxonomy App</title>
+  <link rel="stylesheet" href="../css/style/dashboard.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">Bloom’s Dashboard</div>
+    <div class="nav-user">
+      <span id="username"></span>
+      <button onclick="location.href='index.html'">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-card" onclick="navigateTo('question-search')">
+        <h3>Bloom's Taxonomy Classifier</h3>
+        <p>Analyze and classify questions according to Bloom's Taxonomy levels.</p>
+      </div>
+
+      <div class="feature-card" onclick="navigateTo('questionpaper')">
+        <h3>Question Paper Generator</h3>
+        <p>Generate balanced question papers with CO-PO-BL mappings.</p>
+      </div>
+
+      <div class="feature-card" onclick="navigateTo('quiz')">
+        <h3>AI Quiz Challenge</h3>
+        <p>Test your knowledge with AI-generated and evaluated quizzes.</p>
+      </div>
+
+      <div class="feature-card" onclick="navigateTo('progress')">
+        <h3>Learning Progress</h3>
+        <p>Track your quiz results and progress over time.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/scripts/dashboard.js"></script>
+</body>
+</html>
